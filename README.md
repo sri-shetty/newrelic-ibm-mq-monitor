@@ -1,41 +1,71 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# [Project Name] [build badges go here when available]
+# [newrelic-ibm-mq-monitor]
 
->[Brief description - what is the project and value does it provide? How often should users expect to get releases? How is versioning set up? Where does this project want to go?]
+The newrelic ibm mq monitor allows you to monitor the performance of MQ Objects like channels and queues while also enabling easy alerting.
 
 ## Installation
 
-> [Include a step-by-step procedure on how to get your code installed. Be sure to include any third-party dependencies that need to be installed separately]
+1. Unzip the newrelic-ibm-mq-monitor 
 
-## Getting Started
+## Configuration
 
->[Simple steps to start working with the software similar to a "Hello World"]
+Rename the plugin.template.json to plugin.json. Edit all parameters to your environment. 
 
-## Usage
+### Global Properties
 
->[**Optional** - Include more thorough instructions on how to use the software. This section might not be needed if the Getting Started section is enough. Remove this section if it's not needed.]
+The "global" object in plugin.json contains general properties application to the monitor.
+
+- **account_id**: your new relic account id. You can find it in the URL that you use to access newrelic. For example: https://rpm.newrelic.com/accounts/{accountID}/applications
+- **insights_mode**:
+	- The insights_insert_key provided here will be used to post metrics to New Relic.
+- **proxy**: Enter the proxy setting in this section if a proxy is required. 
+	- "proxy_host": the proxy host name or ip addresss
+	- "proxy_port": the proxy port
+	- "proxy_username": (optional) proxy user name
+	- "proxy_password": (optional) proxy password
+- **queueIgnores**:  An array of "ignoreRegEx" objects. The value of the object is a regular expression. Any queue name on any queue manager that matches the regular expression will be ignored (i.e. no metrics collected). The array can contain any number of entries.
+- **queueIncludes**: Overrides queueIgnores with same format. This allows wildcard excludes but then the ability to explicitly include specific queues here.
+
+### Instance Properties
+
+The **agents** array in **plugin.json** contains objects each of which contain properties specific to an IBM MQ Queue Manager that is to be monitored.
+Each instance can have the following properties
+
+- **name**: any descriptive name for the queue manager
+- **host**: hostname or IP for the queue manager
+- **port**: port number that the queue manager is listening on
+- **queueManager**: the name of the MQ queue manager to connect to.
+- **channel**: channel name used to connect to the queue manager. Typically you can use SYSTEM.DEF.SVRCONN
+- **username**: username used to connection 
+- **password"**: password used to connection 
+
+### Password Obfuscation
+For additional security, this integration supports the use of an obfuscated proxy password with the proxy_password_obfuscated attribute. Similarly, it also supports obfuscating any other password attribute by appending "_obfuscated" to the attribute name and providing an obfuscated value. 
+
+The obfuscated proxy password is generated using the following [New Relic CLI](https://github.com/newrelic/newrelic-cli)  command:
+
+```
+
+newrelic agent config obfuscate --key OBSCURING_KEY --value "CLEAR_TEXT_PROXY_PASSWORD"
+
+```
+
+The obscuring key must also be configured by setting the NEW_RELIC_CONFIG_OBSCURING_KEY environment variable.
+
+## Starting the monitor 
 
 ## Building
 
->[**Optional** - Include this section if users will need to follow specific instructions to build the software from source. Be sure to include any third party build dependencies that need to be installed separately. Remove this section if it's not needed.]
-
-## Testing
-
->[**Optional** - Include instructions on how to run tests if we include tests with the codebase. Remove this section if it's not needed.]
+1. Build the project: `gradle clean build`
+2. Copy the resulting contents of `build/distributions` folder into newrelic-ibm-mq-monitor folder.
 
 ## Support
 
 New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR DEDICATED SUPPORT. Issues and contributions should be reported to the project here on GitHub.
 
->[Choose 1 of the 2 options below for Support details, and remove the other one.]
+We encourage you to bring your experiences and questions to the [Explorers Hub](https://discuss.newrelic.com) where our community members collaborate on solutions and new ideas.
 
->[Option 1 - no specific thread in Community]
->We encourage you to bring your experiences and questions to the [Explorers Hub](https://discuss.newrelic.com) where our community members collaborate on solutions and new ideas.
-
->[Option 2 - thread in Community]
->New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub.
->You can find this project's topic/threads here: [URL for Community thread]
 
 ## Contributing
 
@@ -49,6 +79,6 @@ If you believe you have found a security vulnerability in this project or any of
 
 ## License
 
-[Project Name] is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+[New Relic IBM MQ monitor] is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
->[If applicable: [Project Name] also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+[New Relic IBM MQ monitor] also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
