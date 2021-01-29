@@ -1,6 +1,6 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# [newrelic-ibm-mq-monitor]
+# New Relic integration for IBM MQ (newrelic-ibm-mq-monitor)
 
 The newrelic ibm mq monitor allows you to monitor the performance of MQ Objects like channels and queues while also enabling easy alerting.
 
