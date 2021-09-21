@@ -53,6 +53,21 @@ newrelic agent config obfuscate --key OBSCURING_KEY --value "CLEAR_TEXT_PROXY_PA
 
 The obscuring key must also be configured by setting the NEW_RELIC_CONFIG_OBSCURING_KEY environment variable.
 
+## Logging
+
+The logging configuration can be controlled using the logback configuration file- ./config/logback.xml
+
+Edit the following block of XML at the end of the logback.xml to change the log level (possible values are INFO, DEBUG, ERROR) and the log ouput(possible values are STDOUT, FILE)
+```
+    <logger name="com.newrelic" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+```
+
+## Metrics and Dashboarding
+All metrics collected by this plugin are reported as events of type "IBMMQSample". 
+
+
 ## Starting the monitor 
 
 ## Building
