@@ -1,5 +1,21 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
+![GitHub forks](https://img.shields.io/github/forks/newrelic-experimental/newrelic-ibm-mq-monitor?style=social)
+![GitHub stars](https://img.shields.io/github/stars/newrelic-experimental/newrelic-ibm-mq-monitor?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/newrelic-experimental/newrelic-ibm-mq-monitor?style=social)
+
+![GitHub all releases](https://img.shields.io/github/downloads/newrelic-experimental/newrelic-ibm-mq-monitor/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/newrelic-experimental/newrelic-ibm-mq-monitor)
+![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/newrelic-ibm-mq-monitor)
+![GitHub Release Date](https://img.shields.io/github/release-date/newrelic-experimental/newrelic-ibm-mq-monitor)
+
+
+![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/newrelic-ibm-mq-monitor)
+![GitHub issues closed](https://img.shields.io/github/issues-closed/newrelic-experimental/newrelic-ibm-mq-monitor)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/newrelic-ibm-mq-monitor)
+![GitHub pull requests closed](https://img.shields.io/github/issues-pr-closed/newrelic-experimental/newrelic-ibm-mq-monitor)
+
+
 # New Relic integration for IBM MQ (newrelic-ibm-mq-monitor)
 
 The newrelic ibm mq monitor allows you to monitor the performance of MQ Objects like channels and queues while also enabling easy alerting.
