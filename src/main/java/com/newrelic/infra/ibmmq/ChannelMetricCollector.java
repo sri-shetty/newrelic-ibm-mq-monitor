@@ -117,7 +117,12 @@ public class ChannelMetricCollector {
 				request.addParameter(MQConstants.MQIACH_CHANNEL_INSTANCE_ATTRS, attrs);
 				PCFMessage[] response = agent.send(request);
 				for (int i = 0; i < response.length; i++) {
-					String channelName = response[i].getStringParameterValue(MQConstants.MQCACH_CHANNEL_NAME).trim();
+					//String channelName = response[i].getStringParameterValue(MQConstants.MQCACH_CHANNEL_NAME).trim();
+					String tmpChannelName = response[i].getStringParameterValue(MQConstants.MQCACH_CHANNEL_NAME);
+					String channelName = null;
+
+					if (tmpChannelName != null ) {
+						channelName = tmpChannelName.trim();
 
 					logger.debug("Reporting metrics on channel: " + channelName);
 					PCFMessage msg = response[i];
@@ -207,8 +212,10 @@ public class ChannelMetricCollector {
 							channelName, channelStatusStr, channelSubStateStr, messages, bytesSent, bytesRec, buffersSent, buffersRec);
 					metricReporter.report("MQChannelSample", metricset, channelName);
 				}
-
-			} catch (PCFException e) {
+				}
+				logger.debug("channelName is NULL");
+			} 
+			catch (PCFException e) {
 				logger.error("Error fetching channel metrics", e);
 			} catch (IOException e) {
 				logger.error("Error fetching channel metrics", e);
